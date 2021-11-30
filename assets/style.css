@@ -1,0 +1,29 @@
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+td {
+  border: 1px solid black;
+  height: 24px;
+  width: 24px;
+  min-width: 24px;
+}
+
+table {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.active {
+  background-color: gray;
+}
+
+.inactive {
+  background-color: transparent;
+}
