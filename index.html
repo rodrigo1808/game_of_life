@@ -14,20 +14,20 @@
     </tbody>
   </table>
 
-  <button onclick="startGame()">RODAR</button>
+  <div>
+    <div>
+      <label for="tentacles">Tamanho do Grid(Altura X Largura):</label>
 
-  <!--<table>
-    <tr>
-      <td>Alfreds Futterkiste</td>
-      <td>Maria Anders</td>
-      <td>Germany</td>
-    </tr>
-    <tr>
-      <td>Centro comercial Moctezuma</td>
-      <td>Francisco Chang</td>
-      <td>Mexico</td>
-    </tr>
-  </table>-->
+      <input type="number" id="height" name="tentacles" min="5" max="300">
+      X
+      <input type="number" id="width" name="tentacles" min="5" max="300">
+      <button onclick="generateGridWithInputs()">GERAR GRID</button>
+    </div>
+    <button onclick="startGame()">COMEÇAR</button>
+    <button onclick="resetGame()">RESETAR</button>
+    <button onclick="randomizeGrid()">ATIVAR CÉLULAS ALEATORIAMENTE</button>
+  </div>
+  
   <script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>

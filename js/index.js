@@ -1,8 +1,13 @@
 function generateGrid(height, width) {
+  if(game.hasStarted) {
+    return
+  }
+  grid = []
   grid = Array(height).fill().map(()=>Array(width).fill())
   game.width = width
   game.height = height
   grid_element = document.getElementById('grid')
+  grid_element.innerHTML = ''
   for(let i = 0; i < height; i++) {
     grid_element.insertAdjacentHTML('beforeend', `<tr id="${'row_' + i}"></tr>`)
     row = document.getElementById('row_' + i)
@@ -18,12 +23,20 @@ function generateGrid(height, width) {
       grid[i][k] = cell
     }
   }
+}
 
-  console.log(grid)
+function generateGridWithInputs() {
+  if(game.hasStarted) {
+    return
+  }
+  heightInput = document.getElementById('height').value
+  widthInput = document.getElementById('width').value
+  if(heightInput > 0 && heightInput <= 500 && widthInput > 0 && widthInput <= 500)
+    generateGrid(parseInt(heightInput), parseInt(widthInput))
 }
 
 async function gameClock() {
-  while(true) {
+  while(game.hasStarted) {
     checkCellsNeighbors()
     toggleStack()
     await sleep(1000)
@@ -53,15 +66,19 @@ function returnCellElement(row, column) {
   return `<td 
     id="${'cell_' + row + '_' + column}"
     class="${false ? 'active' : 'inactive'}"
-    onclick="getCell(event)"
+    onclick="selectCell(event)"
     >
     </td>`
 }
 
-function getCell(event) {
+function selectCell(event) {
   let cellValues = event.target.id.split('_')
   let row = parseInt(cellValues[1])
   let column = parseInt(cellValues[2])
+  getCell(row, column)
+}
+
+function getCell(row, column) {
   if(game.hasStarted) {
     getNumberOfNeighbors(row, column)
     return
@@ -108,10 +125,26 @@ function startGame() {
   gameClock()
 }
 
+function resetGame() {
+  game.hasStarted = false;
+  generateGrid(game.height, game.width)
+}
+
 function sleep(ms) {
   return new Promise(
     resolve => setTimeout(resolve, ms)
   );
+}
+
+function randomizeGrid() {
+  if(game.hasStarted)
+    return
+  let numberOfCellsToActivate = Math.floor((game.width * game.height) / 3)
+  let randomRows = Array.from({length: numberOfCellsToActivate}, () => Math.floor(Math.random() * game.height));
+  let randomColumns = Array.from({length: numberOfCellsToActivate}, () => Math.floor(Math.random() * game.width));
+  randomRows.forEach((randomRow, index) => {
+    getCell(randomRow, randomColumns[index])
+  });
 }
 
 var grid;
@@ -122,4 +155,4 @@ var game = {
 };
 var toggleStackItems = []
 
-generateGrid(20, 40)
+generateGrid(20, 20)
