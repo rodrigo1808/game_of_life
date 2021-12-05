@@ -72,6 +72,7 @@ function returnCellElement(row, column) {
 }
 
 function selectCell(event) {
+  game.hasActiveCell = true
   let cellValues = event.target.id.split('_')
   let row = parseInt(cellValues[1])
   let column = parseInt(cellValues[2])
@@ -121,12 +122,19 @@ function getNumberOfNeighbors(row, column) {
 }
 
 function startGame() {
+  if(!game.hasActiveCell) {
+    alert('Selecione as células que vão começar ativas ou ative aleatoriamente na opção abaixo.')
+    return
+  }
+  if(game.hasStarted)
+    return
   game.hasStarted = true;
   gameClock()
 }
 
 function resetGame() {
   game.hasStarted = false;
+  game.hasActiveCell = false;
   generateGrid(game.height, game.width)
 }
 
@@ -139,6 +147,7 @@ function sleep(ms) {
 function randomizeGrid() {
   if(game.hasStarted)
     return
+  game.hasActiveCell = true
   let numberOfCellsToActivate = Math.floor((game.width * game.height) / 3)
   let randomRows = Array.from({length: numberOfCellsToActivate}, () => Math.floor(Math.random() * game.height));
   let randomColumns = Array.from({length: numberOfCellsToActivate}, () => Math.floor(Math.random() * game.width));
@@ -147,9 +156,10 @@ function randomizeGrid() {
   });
 }
 
-var grid;
+var grid = [];
 var game = {
   hasStarted: false,
+  hasActiveCell: false,
   width: 0,
   height: 0
 };

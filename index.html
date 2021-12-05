@@ -8,25 +8,30 @@
   <title>Game of Life</title>
 </head>
 <body>
+  <h1>Game of Life</h1>
   <table>
     <tbody id="grid">
 
     </tbody>
   </table>
 
-  <div>
-    <div>
+  <section class="hud">
+    <div class="grid-size">
       <label for="tentacles">Tamanho do Grid(Altura X Largura):</label>
 
-      <input type="number" id="height" name="tentacles" min="5" max="300">
-      X
-      <input type="number" id="width" name="tentacles" min="5" max="300">
-      <button onclick="generateGridWithInputs()">GERAR GRID</button>
+      <div>
+        <input type="number" id="height" name="tentacles" min="5" max="300">
+        X
+        <input type="number" id="width" name="tentacles" min="5" max="300">
+        <button class="btn secondary" onclick="generateGridWithInputs()">GERAR GRID</button>
+      </div>
     </div>
-    <button onclick="startGame()">COMEÇAR</button>
-    <button onclick="resetGame()">RESETAR</button>
-    <button onclick="randomizeGrid()">ATIVAR CÉLULAS ALEATORIAMENTE</button>
-  </div>
+    <button class="btn primary" onclick="startGame()">COMEÇAR</button>
+    <div class="game-opt">
+      <button class="btn secondary" onclick="resetGame()">RESETAR</button>
+      <button class="btn secondary" onclick="randomizeGrid()">ATIVAR CÉLULAS ALEATORIAMENTE</button>
+    </div>
+  </section>
   
   <script type="text/javascript" src="js/index.js"></script>
 </body>

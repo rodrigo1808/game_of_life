@@ -1,10 +1,15 @@
 html, body {
   padding: 0;
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif
 }
 
 * {
   box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
 }
 
 td {
@@ -18,12 +23,62 @@ table {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 256px;
+  padding-top: 0;
+}
+
+.btn {
+  cursor: pointer;
+  outline: 0;
+  display: inline-block;
+  text-align: center;
+  border: 1px solid transparent;
+  padding: 4px 8px;
+  font-size: 16px;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.primary {
+  color: #fff;
+  background-color: #252526;
+  border-color: #252526;
+}
+
+.secondary {
+  color: #252526;
+  background-color: #fff;
+  border-color: #fff;
 }
 
 .active {
-  background-color: gray;
+  background-color: #595959;
 }
 
 .inactive {
   background-color: transparent;
+}
+
+section.hud {
+  background-color: #efefef;
+  display: grid;
+  grid-gap: 42px;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  padding: 36px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+div.grid-size {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+div.game-opt {
+  display: flex;
+  grid-gap: 16px;
+  justify-content: flex-end;
 }
